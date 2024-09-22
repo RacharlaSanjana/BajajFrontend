@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
@@ -19,7 +18,6 @@ function App() {
     try {
       const json = JSON.parse(jsonInput);
 
-      
       setResponseData(null);
       setSelectedFilters([]);
       setMessage('');
@@ -31,7 +29,7 @@ function App() {
     } catch (error) {
       console.error('Error:', error);
       setMessage('Invalid JSON input');
-      setResponseData(null)
+      setResponseData(null);
     }
   };
 
@@ -43,6 +41,7 @@ function App() {
     { value: 'characters', label: 'Characters' },
     { value: 'numbers', label: 'Numbers' },
     { value: 'highestAlphabet', label: 'Highest Alphabet' },
+    { value: 'highestLowercase', label: 'Highest Lowercase' } 
   ];
 
   const customStyles = {
@@ -88,21 +87,31 @@ function App() {
               </div>
             )}
 
-    {selectedFilters.includes('numbers') && responseData.numbers.length > 0 && (
-      <div>
-        <h3>Numbers</h3>
-        {responseData.numbers.map((num, index) => (
-          <span key={index} style={{ marginRight: '10px' }}>{num}</span>
-        ))}
-      </div>
-    )}
-
+            {selectedFilters.includes('numbers') && responseData.numbers.length > 0 && (
+              <div>
+                <h3>Numbers</h3>
+                {responseData.numbers.map((num, index) => (
+                  <span key={index} style={{ marginRight: '10px' }}>{num}</span>
+                ))}
+              </div>
+            )}
 
             {selectedFilters.includes('highestAlphabet') && responseData.highest_alphabet.length > 0 && (
               <div>
                 <h3>Highest Alphabet</h3>
                 <ul>
                   {responseData.highest_alphabet.map((char, index) => (
+                    <li key={index}>{char}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {selectedFilters.includes('highestLowercase') && responseData.highest_lowercase.length > 0 && (
+              <div>
+                <h3>Highest Lowercase Character</h3>
+                <ul>
+                  {responseData.highest_lowercase.map((char, index) => (
                     <li key={index}>{char}</li>
                   ))}
                 </ul>
