@@ -14,11 +14,10 @@ function App() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     try {
       const json = JSON.parse(jsonInput);
 
-  
       setResponseData(null);
       setSelectedFilters([]);
       setMessage('');
@@ -42,11 +41,11 @@ function App() {
     { value: 'characters', label: 'Characters' },
     { value: 'numbers', label: 'Numbers' },
     { value: 'highestAlphabet', label: 'Highest Alphabet' },
-    { value: 'highestLowercase', label: 'Highest Lowercase' }  
+    { value: 'highestLowercase', label: 'Highest Lowercase Character' },
   ];
 
   const customStyles = {
-    option: (provided) => ({
+    option: (provided, state) => ({
       ...provided,
       color: 'black',
     }),
@@ -54,7 +53,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Enter API input</h1>
+      <h1>Enter valid JSON input</h1>
       <form onSubmit={handleSubmit}>
         <textarea
           value={jsonInput}
@@ -67,7 +66,7 @@ function App() {
 
       {responseData && (
         <div className="response-section">
-          <h2>Filtered Response</h2>
+          <h2>Response Data</h2>
           <Select
             isMulti
             options={filterOptions}
@@ -91,30 +90,28 @@ function App() {
             {selectedFilters.includes('numbers') && responseData.numbers.length > 0 && (
               <div>
                 <h3>Numbers</h3>
-                {responseData.numbers.map((num, index) => (
-                  <span key={index} style={{ marginRight: '10px' }}>{num}</span>
-                ))}
-              </div>
-            )}
-
-           {selectedFilters.includes('highestAlphabet') && responseData.highest_alphabet.length > 0 && (
-              <div>
-                <h3>Highest Alphabet</h3>
                 <ul>
-                  {responseData.highest_alphabet.map((char, index) => (
-                    <li key={index}>{char}</li>
+                  {responseData.numbers.map((num, index) => (
+                    <li key={index}>{num}</li>
                   ))}
                 </ul>
               </div>
             )}
 
-            {selectedFilters.includes('highestLowercase') && responseData.highest_lowercase.length > 0 && (
+            {selectedFilters.includes('highestAlphabet') && responseData.highest_alphabet && (
+              <div>
+                <h3>Highest Alphabet</h3>
+                <ul>
+                  <li>{responseData.highest_alphabet}</li>
+                </ul>
+              </div>
+            )}
+
+            {selectedFilters.includes('highestLowercase') && responseData.highest_lowercase && (
               <div>
                 <h3>Highest Lowercase Character</h3>
                 <ul>
-                  {responseData.highest_lowercase.map((char, index) => (
-                    <li key={index}>{char}</li>
-                  ))}
+                  <li>{responseData.highest_lowercase}</li>
                 </ul>
               </div>
             )}
