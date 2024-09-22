@@ -40,7 +40,6 @@ function App() {
   const filterOptions = [
     { value: 'characters', label: 'Characters' },
     { value: 'numbers', label: 'Numbers' },
-    { value: 'highestAlphabet', label: 'Highest Alphabet' },
     { value: 'highestLowercase', label: 'Highest Lowercase Character' },
   ];
 
@@ -94,15 +93,6 @@ function App() {
                   {responseData.numbers.map((num, index) => (
                     <li key={index}>{num}</li>
                   ))}
-                </ul>
-              </div>
-            )}
-
-            {selectedFilters.includes('highestAlphabet') && responseData.highest_alphabet && (
-              <div>
-                <h3>Highest Alphabet</h3>
-                <ul>
-                  <li>{responseData.highest_alphabet}</li>
                 </ul>
               </div>
             )}
