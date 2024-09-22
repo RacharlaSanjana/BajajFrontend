@@ -97,11 +97,11 @@ function App() {
               </div>
             )}
 
-            {selectedFilters.includes('highestAlphabet') && responseData.highest_alphabet.length > 0 && (
+            {selectedFilters.includes('highestAlphabet') && responseData.alphabets.length > 0 && (
               <div>
                 <h3>Highest Alphabet</h3>
                 <ul>
-                  {responseData.highest_alphabet.map((char, index) => (
+                  {responseData.alphabets.map((char, index) => (
                     <li key={index}>{char}</li>
                   ))}
                 </ul>
