@@ -14,10 +14,11 @@ function App() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
     try {
       const json = JSON.parse(jsonInput);
 
+  
       setResponseData(null);
       setSelectedFilters([]);
       setMessage('');
@@ -41,7 +42,7 @@ function App() {
     { value: 'characters', label: 'Characters' },
     { value: 'numbers', label: 'Numbers' },
     { value: 'highestAlphabet', label: 'Highest Alphabet' },
-    { value: 'highestLowercase', label: 'Highest Lowercase' } 
+    { value: 'highestLowercase', label: 'Highest Lowercase' }  
   ];
 
   const customStyles = {
